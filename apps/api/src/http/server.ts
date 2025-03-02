@@ -12,6 +12,7 @@ import {
 
 import { authenticateWithPassword } from './router/auth/authenticate-with-password'
 import { createAccount } from './router/auth/create-account'
+import { getProfile } from './router/auth/get-profile'
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -32,7 +33,7 @@ app.register(fastifySwaggerUi, {
 app.register(fastifyJwt, {
   secret: 'my-jwt',
 })
-
+app.register(getProfile)
 app.register(fastifyCors)
 app.register(createAccount)
 app.register(authenticateWithPassword)
