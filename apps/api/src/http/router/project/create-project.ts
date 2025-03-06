@@ -5,7 +5,7 @@ import z from 'zod'
 import { auth } from '@/http/middlewares/jwt-validation'
 import { prisma } from '@/lib/prisma'
 import { createSlug } from '@/utils/create-slug'
-import { getUserPermission } from '@/utils/get-user.permission'
+import { getUserPermissions } from '@/utils/get-user-permission'
 
 import { Unauthorized } from '../_errors/unauthorized-error'
 
@@ -41,7 +41,7 @@ export async function createProject(app: FastifyInstance) {
         const { membership, organization } =
           await request.getUserMembership(slug)
 
-        const { cannot } = getUserPermission(userId, membership.role)
+        const { cannot } = getUserPermissions(userId, membership.role)
         if (cannot('create', 'Project')) {
           throw new Unauthorized('you a not allowed to create new projects')
         }

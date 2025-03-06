@@ -22,6 +22,11 @@ import { createOrganization } from './router/org/create-organization'
 import { getMemberShip } from './router/org/get-membership'
 import { getOrganization } from './router/org/get-organization'
 import { getOrganizations } from './router/org/get-organizations'
+import { shutDownOrganization } from './router/org/shutdown-organization'
+import { transferOrganization } from './router/org/transfer-organization'
+import { updateOrganization } from './router/org/update-organization'
+import { createProject } from './router/project/create-project'
+import { deleteProject } from './router/project/delete-project'
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -58,10 +63,17 @@ app.register(authenticateWithPassword)
 app.register(resetPassword)
 app.register(requestPasswordRecover)
 app.register(authenticateWithGitHub)
+
 app.register(createOrganization)
 app.register(getMemberShip)
 app.register(getOrganization)
 app.register(getOrganizations)
+app.register(shutDownOrganization)
+app.register(transferOrganization)
+app.register(updateOrganization)
+
+app.register(createProject)
+app.register(deleteProject)
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('running server')
 })
