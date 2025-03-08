@@ -7,7 +7,7 @@ import { auth } from '@/http/middlewares/jwt-validation'
 import { BadRequestError } from '@/http/router/_errors/bad-request-error'
 import { Unauthorized } from '@/http/router/_errors/unauthorized-error'
 import { prisma } from '@/lib/prisma'
-import { getUserPermissions } from '@/utils/get-user-permission'
+import { getUserPermission } from '@/utils/get-user-permission'
 
 export async function deleteProject(app: FastifyInstance) {
   app
@@ -17,7 +17,7 @@ export async function deleteProject(app: FastifyInstance) {
       '/organizations/:slug/projects/:projectId',
       {
         schema: {
-          tags: ['Projects'],
+          tags: ['projects'],
           summary: 'Delete a project',
           security: [{ bearerAuth: [] }],
           params: z.object({
@@ -46,7 +46,7 @@ export async function deleteProject(app: FastifyInstance) {
           throw new BadRequestError('Project not found.')
         }
 
-        const { cannot } = getUserPermissions(userId, membership.role)
+        const { cannot } = getUserPermission(userId, membership.role)
         const authProject = projectSchema.parse(project)
 
         if (cannot('delete', authProject)) {

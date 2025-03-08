@@ -27,6 +27,7 @@ import { transferOrganization } from './router/org/transfer-organization'
 import { updateOrganization } from './router/org/update-organization'
 import { createProject } from './router/project/create-project'
 import { deleteProject } from './router/project/delete-project'
+import { getProject } from './router/project/get-project'
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -74,6 +75,7 @@ app.register(updateOrganization)
 
 app.register(createProject)
 app.register(deleteProject)
+app.register(getProject)
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('running server')
 })

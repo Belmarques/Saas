@@ -5,7 +5,7 @@ import z from 'zod'
 
 import { auth } from '@/http/middlewares/jwt-validation'
 import { prisma } from '@/lib/prisma'
-import { getUserPermission } from '@/utils/get-user.permission'
+import { getUserPermission } from '@/utils/get-user-permission'
 
 import { Unauthorized } from '../_errors/unauthorized-error'
 
