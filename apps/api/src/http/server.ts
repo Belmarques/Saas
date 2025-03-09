@@ -18,7 +18,9 @@ import { createAccount } from './router/auth/create-account'
 import { getProfile } from './router/auth/get-profile'
 import { requestPasswordRecover } from './router/auth/request-password-recover'
 import { resetPassword } from './router/auth/reset-password'
+import { createInvite } from './router/invites/create-invite'
 import { getMembers } from './router/members/get-members'
+import { removeMember } from './router/members/remove-members'
 import { updateMember } from './router/members/update-member'
 import { createOrganization } from './router/org/create-organization'
 import { getMemberShip } from './router/org/get-membership'
@@ -83,7 +85,9 @@ app.register(getProjects)
 
 app.register(getMembers)
 app.register(updateMember)
+app.register(removeMember)
 
+app.register(createInvite)
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('running server')
 })
