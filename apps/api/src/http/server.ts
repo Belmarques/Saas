@@ -18,7 +18,13 @@ import { createAccount } from './router/auth/create-account'
 import { getProfile } from './router/auth/get-profile'
 import { requestPasswordRecover } from './router/auth/request-password-recover'
 import { resetPassword } from './router/auth/reset-password'
+import { acceptInvite } from './router/invites/accept-invite'
 import { createInvite } from './router/invites/create-invite'
+import { getInvite } from './router/invites/get-invite'
+import { getInvites } from './router/invites/get-invites'
+import { getPendingInvites } from './router/invites/get-pending-invites'
+import { rejectInvite } from './router/invites/reject-invite'
+import { revokeInvite } from './router/invites/revoke-invite'
 import { getMembers } from './router/members/get-members'
 import { removeMember } from './router/members/remove-members'
 import { updateMember } from './router/members/update-member'
@@ -88,6 +94,13 @@ app.register(updateMember)
 app.register(removeMember)
 
 app.register(createInvite)
+app.register(getInvite)
+app.register(getInvites)
+app.register(acceptInvite)
+app.register(rejectInvite)
+app.register(revokeInvite)
+app.register(getPendingInvites)
+
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('running server')
 })
